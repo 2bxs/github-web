@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Barra lateral estilo Linear</title>
+  <link rel="stylesheet" href="styles.css" />
+  <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body>
+  <canvas id="rainCanvas"></canvas>
+  <div class="app">
+    <aside class="sidebar" id="sidebar">
+      <header class="sidebar-header">
+        <a href="#" class="workspace" id="homeLink">
+          <img src="https://st4.depositphotos.com/21557188/23290/v/450/depositphotos_232900972-stock-illustration-simple-person-icon-linear-symbol.jpg" alt="INDEX" class="workspace-icon" />
+          <span class="workspace-name">INDEX</span>
+        </a>
+        <div class="header-actions"></div>
+      </header>
+
+      <nav class="sidebar-nav">
+        <div class="nav-group"></div>
+
+        <div class="section">
+          <button class="section-header" data-toggle="teams">
+            <i data-lucide="chevron-down" class="chevron"></i>
+            <span>Tus equipos</span>
+          </button>
+          <div class="section-body" id="teams-body">
+            <div class="team">
+              <button class="team-header" data-team="reexpediciones">
+                <i data-lucide="chevron-right" class="chevron team-chevron"></i>
+                <span class="team-icon" style="background:#eb5757">R</span>
+                <span class="team-name">REEXPEDICIONES</span>
+              </button>
+              <div class="team-children collapsed" id="reexpediciones-children">
+                <button class="child-item" data-view="reexpeditions">Reexp. por cumplir</button>
+                <button class="child-item" data-view="notifications">Generador de Notificaciones</button>
+              </div>
+            </div>
+            <div class="team">
+              <button class="team-header" data-team="zofri">
+                <i data-lucide="chevron-right" class="chevron team-chevron"></i>
+                <span class="team-icon" style="background:#27ae60">Z</span>
+                <span class="team-name">ZOFRI</span>
+              </button>
+              <div class="team-children collapsed" id="zofri-children">
+                <button class="child-item" data-view="consultas">Consultas ZVE</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </nav>
+
+      <footer class="sidebar-footer">
+        <button class="icon-btn" id="helpBtn" title="Ayuda"><i data-lucide="circle-help"></i></button>
+        <span class="footer-text">Create by Bzero v 0.0.2a</span>
+      </footer>
+    </aside>
+
+    <div class="context-menu" id="contextMenu">
+      <button>Configuración del equipo</button>
+      <button>Copiar enlace</button>
+      <button>Abrir archivo</button>
+      <button>Gestionar notificaciones</button>
+      <button>Abandonar equipo</button>
+    </div>
+
+    <main class="main" id="main">
+      <div class="mobile-topbar">
+        <button class="icon-btn" id="mobileMenuBtn"><i data-lucide="menu"></i></button>
+        <a href="#" id="mobileHomeLink">INDEX</a>
+      </div>
+      <div class="main-content">
+        <div id="defaultView">
+          <h1>Herramientas Mesa de Reexpediciones</h1>
+          <div class="cards">
+            <div class="card">
+              <h2>Dólar aduana Chile</h2>
+              <p id="dolarValue" data-no-decode>Cargando...</p>
+            </div>
+            <div class="card">
+              <h2>Reloj digital</h2>
+              <div class="dc-wrap" data-no-decode>
+                <div class="dc-header">
+                  <div class="dc-brand">
+                    <div class="dc-logo">CL</div>
+                    <div>
+                      <div class="dc-title">Reloj digital</div>
+                      <div class="dc-subtitle">12/24 horas - Solo modo oscuro</div>
+                    </div>
+                  </div>
+                  <div class="dc-toggle">
+                    <button class="dc-btn activeToggle" id="dc-btn-12">12 hr</button>
+                    <button class="dc-btn" id="dc-btn-24">24 hr</button>
+                  </div>
+                </div>
+                <div class="dc-display">
+                  <div class="dc-time-wrap">
+                    <span class="dc-time" id="dc-time">00:00:00</span>
+                    <span class="dc-ampm" id="dc-ampm">AM</span>
+                  </div>
+                  <div class="dc-meta">
+                    <span id="dc-date">January 1, 2025</span>
+                    <span id="dc-day">Monday</span>
+                  </div>
+                </div>
+                <div class="dc-foot">
+                  <span>Actualiza cada segundo</span>
+                  <span>Hora local</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div id="reexpeditionsView" style="display:none;">
+          <h1>Reexpediones por cumplir</h1>
+          <div class="embed-container">
+            <iframe
+              id="reexpeditionsFrame"
+              src="https://dashboard-ytsxzkiwuaaksbwxfddvwq.streamlit.app/?embed=true"
+              title="Reexpediones por cumplir"
+              loading="lazy"
+              referrerpolicy="no-referrer-when-downgrade"
+            ></iframe>
+          </div>
+        </div>
+        <div id="notificationsView" style="display:none;">
+          <h1>Generador de Notificaciones</h1>
+          <div class="embed-container">
+            <iframe
+              id="notificationsFrame"
+              src="https://primenote.streamlit.app/?embed=true"
+              title="Generador de Notificaciones"
+              loading="lazy"
+              referrerpolicy="no-referrer-when-downgrade"
+            ></iframe>
+          </div>
+        </div>
+        <div id="consultasView" style="display:none;">
+          <h1>Consultas ZVE</h1>
+          <div class="embed-container">
+            <iframe
+              id="consultasFrame"
+              src="https://fm8ywxmbcha6qdkjnyqn2x.streamlit.app/!?embed=true"
+              title="Consultas ZVE"
+              loading="lazy"
+              referrerpolicy="no-referrer-when-downgrade"
+            ></iframe>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+
+
+
+  <script src="app.js"></script>
+</body>
+</html>
